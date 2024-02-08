@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        
+        {% endblock title %}
+    </title>
+    <link rel="stylesheet" href="{% static 'admin_ssu/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- reference CSS file -->
+    <link rel="stylesheet" href="{% static 'reportbump/css/style.css' %}">
+    {% comment %} <link rel="stylesheet" href="./css/tablet.css" media="(min-width: 768px)"> {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="./css/desktop.css" media="(min-width: 992px)"> {% endcomment %}
+    {% block css %}
+    
+    {% endblock css %}
+</head>
+<body>
+    <header>
+        <a href="#" class="logo"><i class="fas fa-utensils"></i>food</a>
+        <div id="menu-bar" class="fa fa-bars"></div>
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#home">Admin</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+            
+        {% endblock content %}
+    </main>
+    <footer>
+
+    </footer>
+    <script src="{% static 'admin_ssu/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    {% block js %}
+    
+    {% endblock js %}
+</body>
+</html>
