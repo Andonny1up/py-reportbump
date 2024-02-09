@@ -1,8 +1,11 @@
 {% extends "reportbump/layouts/base.html" %}
 {% block title %}BacheAlert{% endblock title %}
 {% block content %}
-<section class="home">
-    <h1>Contenido</h1>
-    <a href="" class="btn-red">Reportar</a>
+<section id="home"class="home">
+    {% comment %} <h1 class="heading main">Reporta <span>ya</span></h1> {% endcomment %}
+    <div class="content">
+        <a href="{% url "report" %}" class="btn-red">Reportar</a>
+        <a href="{% url "maps" %}" class="btn-red">Mapa de reportes</a>
+    </div>
 </section>
 {% endblock content %}

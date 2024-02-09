@@ -57,6 +57,16 @@
                             <i class="fa fa-home"></i>Inicio
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin_ssu:report_potholes:solicitude_potholes' %}">
+                            <i class="fa fa-home"></i>Solicitudes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin_ssu:home' %}">
+                            <i class="fa fa-home"></i>Puntos Registrados
+                        </a>
+                    </li>
                     {% if perms.auth.view_user or perms.auth.view_group or perms.auth.view_permission %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

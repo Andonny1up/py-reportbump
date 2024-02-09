@@ -1,0 +1,41 @@
+{% extends "reportbump/layouts/base.html" %}
+{% block title %}BacheReportMaps{% endblock title %}
+{% block content %}
+<section id="home"class="home">
+    <div id="mapid" style="height: 400px; width: 100%;"></div>
+    <div class="panel">
+        
+    </div>
+</section>
+{% endblock content %}
+{% block css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+{% endblock css %}
+{% block js %}
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    var potholes = JSON.parse('{{ potholes|escapejs }}');
+    if (potholes.length > 0) {
+        var map = L.map('mapid').setView([potholes[0].latitude, potholes[0].longitude], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var greenIcon = L.icon({
+            iconUrl: 'https://cdn-icons-png.flaticon.com/128/2582/2582928.png',
+            iconSize: [25, 41], // size of the icon
+            iconAnchor: [12, 41], // point of the icon which will correspond to marker's location
+            popupAnchor: [0, -41] // point from which the popup should open relative to the iconAnchor
+        });
+        
+        potholes.forEach(function(pothole) {
+            //var marker = L.marker([pothole.latitude, pothole.longitude], {icon: greenIcon}).addTo(map);
+            var marker = L.marker([pothole.latitude, pothole.longitude]).addTo(map);
+            console.log(pothole);
+            marker.bindPopup('<a href="url_de_tu_pagina">Haz clic aquí para ver más detalles</a>');
+        });
+    }
+</script>
+{% endblock js %}

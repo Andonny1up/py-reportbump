@@ -31,4 +31,5 @@ urlpatterns = [
     path('permissions/', views.AllPermissionsView.as_view(), name='permission_list'),
 
     # links to
+    path('',include('report_potholes.urls')),
 ]

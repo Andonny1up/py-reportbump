@@ -1,0 +1,90 @@
+{% extends "reportbump/layouts/base.html" %}
+{% block title %}BacheReport{% endblock title %}
+{% block content %}
+<section id="home"class="home">
+    <div class="panel">
+        <h1 class="heading"><span>order</span> now</h1>
+        <div class="row">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="inputBox">
+                    <label for="reported_by">{{ form.reported_by.label }}</label>
+                    {{ form.reported_by }}
+                </div>
+                <div class="inputBox">
+                    <label for="phone">{{ form.phone.label }}</label>
+                    {{ form.phone }}
+                </div>
+                <div class="inputBox">
+                    <label for="photo">{{ form.photo.label }}</label>
+                    {{ form.photo }}
+                </div>
+                <div id="mapid" style="height: 180px; width: 100%;"></div>
+                <div class="inputBox">
+                    <label for="latitude">{{ form.latitude.label }}</label>
+                    {{ form.latitude }}
+                </div>
+                <div class="inputBox">
+                    <label for="longitude">{{ form.longitude.label }}</label>
+                    {{ form.longitude }}
+                </div>
+                <button type="submit" class="btn-block">Enviar</button>
+            </form>
+            
+        </div>
+    </div>
+</section>
+{% endblock content %}
+{% block css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+{% endblock css %}
+{% block js %}
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    var map = L.map('mapid').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var marker = L.marker([51.5, -0.09]).addTo(map);
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setPosition);
+        } else { 
+            alert("La geolocalización no es soportada por este navegador.");
+        }
+    }
+
+    function setPosition(position) {
+        document.getElementById('id_latitude').value = position.coords.latitude;
+        document.getElementById('id_longitude').value = position.coords.longitude;
+        var location = [position.coords.latitude, position.coords.longitude];
+        marker.setLatLng(location);
+        map.setView(location);
+        map.invalidateSize();
+    }
+
+    window.onload = function() {
+        getLocation();
+    };
+</script>
+{% comment %} <script>
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setPosition);
+        } else { 
+            alert("La geolocalización no es soportada por este navegador.");
+        }
+    }
+
+    function setPosition(position) {
+        document.getElementById('id_latitude').value = position.coords.latitude;
+        document.getElementById('id_longitude').value = position.coords.longitude;
+    }
+
+    window.onload = getLocation;
+</script> {% endcomment %}
+{% endblock js %}

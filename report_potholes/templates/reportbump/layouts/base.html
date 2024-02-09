@@ -9,7 +9,7 @@
         
         {% endblock title %}
     </title>
-    <link rel="stylesheet" href="{% static 'admin_ssu/bootstrap/css/bootstrap.min.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'admin_ssu/bootstrap/css/bootstrap.min.css' %}"> {% endcomment %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- reference CSS file -->
     <link rel="stylesheet" href="{% static 'reportbump/css/style.css' %}">
@@ -24,8 +24,8 @@
         <a href="#" class="logo"><i class="fas fa-utensils"></i>food</a>
         <div id="menu-bar" class="fa fa-bars"></div>
         <nav class="navbar">
-            <a href="#home">home</a>
-            <a href="#home">Admin</a>
+            <a href="{% url "index" %}">Inicio</a>
+            <a href="{% url "admin_ssu:login" %}">Admin</a>
         </nav>
     </header>
     <main>
@@ -33,10 +33,21 @@
             
         {% endblock content %}
     </main>
-    <footer>
-
+    <footer class="footer">
+        <div class="share">
+            <a href="#" class="btn">facebook</a>
+            <a href="#" class="btn">twitter</a>
+            <a href="#" class="btn">instagram</a>
+            <a href="https://github.com/Andonny1up" class="btn" target="_blank">github</a>
+            <a href="https://www.linkedin.com/in/andoni-barba-noe-894460184/" class="btn" target="_blank">linkedin</a>
+        </div>
+        <h1 class="credit">created by <span>andonny1up</span> | andoni barba noe</h1>
     </footer>
-    <script src="{% static 'admin_ssu/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- scroll top button -->
+    <a href="#home" class="fa fa-chevron-up" id="scroll-top"></a>
+    <script src="{% static "reportbump/js/script.js" %}"></script>
+    {% comment %} <script src="{% static 'admin_ssu/bootstrap/js/bootstrap.bundle.min.js' %}"></script> {% endcomment %}
+    
     {% block js %}
     
     {% endblock js %}
