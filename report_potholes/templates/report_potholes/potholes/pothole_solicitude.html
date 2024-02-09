@@ -1,12 +1,12 @@
 {% extends "admin_ssu/master.html" %}
-{% block title %} titulo {% endblock title %}
+{% block title %} Solicitudes Baches {% endblock title %}
 {% block content %}
 
 <div class="container">
     <div class="row">
         <div class="col">
             <h1 class="heading">
-                <i class="fa fa-user-plus"></i> titulo
+                <i class="fa fa-location-arrow"></i> Solicitudes Baches
             </h1>
             
         </div>
@@ -30,28 +30,32 @@
                                 </thead>
                                 <tbody>
                                     {% for pothole in potholes %}
-                                    <td>{{ forloop.counter }}</td>
-                                    <td>
-                                        <img src="{{ pothole.photo.url}}" alt="" width="200px">    
-                                    </td>
-                                    <td>
-                                        latitud: {{ pothole.latitude }} <br>
-                                        longitud: {{ pothole.longitude }}
-                                    </td>
-                                    <td>
-                                        {% if pothole.reported_by %}
-                                           NOMBRE: {{ pothole.reported_by|upper}}
-                                        {% endif %}
-                                        <br>
-                                        {% if pothole.phone %}
-                                            CEL: {{ pothole.phone }}
-                                        {% endif %}
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="{% url 'admin_ssu:report_potholes:approve_pothole' pothole.id %}">Aprobar</a>
-                                        {% comment %} <a href="{% url 'delete_pothole' pothole.id %}">Borrar</a> {% endcomment %}
-                                    </td>
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>
+                                            <img src="{{ pothole.photo.url}}" alt="" width="200px">    
+                                        </td>
+                                        <td>
+                                            latitud: {{ pothole.latitude }} <br>
+                                            longitud: {{ pothole.longitude }}
+                                        </td>
+                                        <td>
+                                            {% if pothole.reported_by %}
+                                            NOMBRE: {{ pothole.reported_by|upper}}
+                                            {% endif %}
+                                            <br>
+                                            {% if pothole.phone %}
+                                                CEL: {{ pothole.phone }}
+                                            {% endif %}
+                                            
+                                        </td>
+                                        <td>
+                                            {% comment %} <a href="{% url 'admin_ssu:report_potholes:approve_pothole' pothole.id %}">Aprobar</a> {% endcomment %}
+                                            <a href="#" data-id="{{ pothole.id }}" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#aproveModal"><i class="fa fa-thumbs-up"></i> Aprobar</a>
+                                            <a href="#" data-id="{{ pothole.id }}" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa fa-thumbs-down"></i> Descartar</a>
+                                            {% comment %} <a href="{% url 'delete_pothole' pothole.id %}">Borrar</a> {% endcomment %}
+                                        </td>
+                                    </tr>
                                     {% endfor %}
                                 </tbody>
                             </table>
@@ -70,11 +74,11 @@
                                 <ul class="pagination d-flex justify-content-center justify-content-md-end">
                                     {% if page_obj.has_previous %}
                                     <li class="page-item">
-                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}&search={{ search }}" aria-label="Previous">
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
                                             <span aria-hidden="true">&laquo; <span class="pagi-hidden">Anterior</span></span>
                                         </a>
                                     </li>
-                                    <li class="page-item"><a class="page-link" href="?page=1&search={{ search }}"> 1 </a></li>
+                                    <li class="page-item"><a class="page-link" href="?page=1"> 1 </a></li>
                                     <li class="page-item disabled"><a class="page-link" href=""> ... </a></li>
                                     <li class="page-item active"><span class="page-link">{{ page_obj.number }} </span></li>
                                     {% else %}
@@ -98,9 +102,9 @@
                                     
                                     {% if page_obj.has_next %}
                                     <li class="page-item disabled"><a class="page-link" href=""> ... </a></li>
-                                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}&search={{ search }}"> {{ page_obj.paginator.num_pages }} </a></li>
+                                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}"> {{ page_obj.paginator.num_pages }} </a></li>
                                     <li class="page-item">
-                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}&search={{ search }}" aria-label="Next">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
                                             <span aria-hidden="true"><span class="pagi-hidden">Siguiente</span> &raquo;</span>
                                         </a>
                                     </li>
@@ -122,21 +126,42 @@
     </div>
 </div>
 <!-- Modal -->
+<div class="modal fade" id="aproveModal" tabindex="-1" aria-labelledby="aproveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="aproveModalLabel" style="color: white;"> <i class="fas fa-thumbs-up"></i> Aprobar</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">  
+                <p>¿Está seguro de que desea aprobar este registro?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Cancelar</button>
+                <form action="" method="POST" id="aproveForm">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Aprobar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header my-bg-danger" data-bs-theme="dark">
-          <h1 class="modal-title fs-5" id="deleteModalLabel"> <i class="fa fa-trash"></i> Eliminar</h1>
+        <div class="modal-header bg-danger" data-bs-theme="dark">
+          <h1 class="modal-title fs-5" id="deleteModalLabel" style="color: white;"> <i class="fa fa-trash"></i> Descartar</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">  
-            <p>¿Está seguro de eliminar este usuario?</p>
+            <p>¿Está seguro de que desea descartar este ?</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Cancelar</button>
           <form action="" method="POST" id="deleteForm">
             {% csrf_token %}
-            <button type="submit" class="btn my-btn-danger">Eliminar</button>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
         </form>
         </div>
       </div>
@@ -144,6 +169,22 @@
 </div>
 {% endblock content %}
 {% block js %}
+<script>
+    $(document).ready(function() {
+        $('#aproveModal').on('show.bs.modal', function(e) {
+            var userId = $(e.relatedTarget).data('id');
+            var url = "{% url 'admin_ssu:report_potholes:approve_pothole' 1234567890 %}".replace('1234567890', userId);
+            $('#aproveForm').attr('action', url);
+        });
+    });
+    $(document).ready(function() {
+        $('#deleteModal').on('show.bs.modal', function(e) {
+            var userId = $(e.relatedTarget).data('id');
+            var url = "{% url 'admin_ssu:report_potholes:delete_pothole' 1234567890 %}".replace('1234567890', userId);
+            $('#deleteForm').attr('action', url);
+        });
+    });
+</script>
 {% endblock js %}
 {% block css %}
 <style>
