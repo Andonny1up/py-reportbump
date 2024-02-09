@@ -1,0 +1,29 @@
+{% extends "reportbump/layouts/base.html" %}
+{% block title %}BacheReport{% endblock title %}
+{% block content %}
+<section id="home" class="home">
+    <div>
+        <a href="{% url "maps" %}" class="btn-red">Mapa de reportes</a>
+    </div>
+    <div class="panel-detail">
+        
+        <h1 class="heading">Trini <span>Bache</span></h1>
+        <div class="detail">
+            <img id="img-photole" src="{{ pothole.photo.url }}" alt="Foto del bache" >
+            {% comment %} <div id="mapid" style="height: 400px; width: 100%;"></div> {% endcomment %}
+            <p class="date">{{ pothole.created_at }}</p>
+            <p><strong>REPORTADO POR:</strong> {{ pothole.reported_by }}</p>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+{% block css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+{% endblock css %}
+{% block js %}
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+
+</script>
+{% endblock js %}

@@ -2,7 +2,7 @@
 {% block title %}BacheReportMaps{% endblock title %}
 {% block content %}
 <section id="home"class="home">
-    <div id="mapid" style="height: 400px; width: 100%;"></div>
+    <div id="mapid" style="height: 70vh; width: 100%;"></div>
     <div class="panel">
         
     </div>
@@ -34,7 +34,7 @@
             var marker = L.marker([pothole.latitude, pothole.longitude], {icon: greenIcon}).addTo(map);
             //var marker = L.marker([pothole.latitude, pothole.longitude]).addTo(map);
             console.log(pothole);
-            marker.bindPopup('<a href="url_de_tu_pagina">Haz clic aquí para ver más detalles</a>');
+            marker.bindPopup('<a href="' + pothole.url + '">Haz clic aquí para ver más detalles</a>');
         });
     }
 </script>

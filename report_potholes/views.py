@@ -1,8 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,get_object_or_404, redirect
-from django.urls import reverse_lazy
-from django.views.generic import ListView, TemplateView, DeleteView
+from django.urls import reverse_lazy, reverse
+from django.views.generic import ListView, TemplateView, DetailView, DeleteView
 from django.views.generic.edit import CreateView
 from .models import Pothole
 from .forms import PotholeForm
@@ -19,8 +19,41 @@ class PotholeCreateView(CreateView):
     template_name = 'report_potholes/pothole_add.html'
     # success_url = '/report_potholes/thanks/'
     success_url = reverse_lazy('index')
+
+
+class ApprovedPotholeMapView(TemplateView):
+    """Muestra un mapa con los baches aprobados."""
+    template_name = 'report_potholes/pothole_maps.html'  # reemplaza con el nombre de tu plantilla
+
+    def get_context_data(self, **kwargs):
+        # context = super().get_context_data(**kwargs)
+        # potholes = Pothole.objects.filter(approved=True).values('latitude', 'longitude')
+        # context['potholes'] = json.dumps(list(potholes), cls=DjangoJSONEncoder, ensure_ascii=False)
+        # # context['potholes'] = Pothole.objects.filter(approved=True)
+        # return context
+    
+        context = super().get_context_data(**kwargs)
+        potholes = Pothole.objects.filter(approved=True)
+        potholes_data = []
+        for pothole in potholes:
+            pothole_data = {
+                'latitude': pothole.latitude,
+                'longitude': pothole.longitude,
+                'url': reverse('pothole_detail', args=[pothole.id])
+            }
+            potholes_data.append(pothole_data)
+        context['potholes'] = json.dumps(potholes_data, cls=DjangoJSONEncoder, ensure_ascii=False)
+        return context
     
 
+class PotholeDetailView(DetailView):
+    """Muestra los detalles de un bache."""
+    model = Pothole
+    template_name = 'report_potholes/pothole_detail.html'
+    context_object_name = 'pothole'
+
+
+# administrador
 class UnapprovedPotholeListView(ListView, LoginRequiredMixin):
     """Muestra los baches no aprobados."""
     model = Pothole
@@ -30,7 +63,7 @@ class UnapprovedPotholeListView(ListView, LoginRequiredMixin):
 
     def get_queryset(self):
         return Pothole.objects.filter(approved=False)
-    
+
 
 @login_required
 def approve_pothole(request, pk):
@@ -39,18 +72,6 @@ def approve_pothole(request, pk):
     pothole.approved = True
     pothole.save()
     return redirect('admin_ssu:report_potholes:solicitude_potholes')
-
-
-class ApprovedPotholeMapView(TemplateView,LoginRequiredMixin):
-    """Muestra un mapa con los baches aprobados."""
-    template_name = 'report_potholes/pothole_maps.html'  # reemplaza con el nombre de tu plantilla
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        potholes = Pothole.objects.filter(approved=True).values('latitude', 'longitude')
-        context['potholes'] = json.dumps(list(potholes), cls=DjangoJSONEncoder, ensure_ascii=False)
-        # context['potholes'] = Pothole.objects.filter(approved=True)
-        return context
     
 
 class PotholeDeleteView(DeleteView,LoginRequiredMixin):

@@ -19,7 +19,7 @@ from django.urls import path, include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-from report_potholes.views import PotholeCreateView, ApprovedPotholeMapView
+from report_potholes.views import PotholeCreateView, ApprovedPotholeMapView, PotholeDetailView
 
 app_name = 'reportbump'
 
@@ -29,6 +29,8 @@ urlpatterns = [
     path('report/', PotholeCreateView.as_view(), name='report'),
     # path('thanks/', views.thanks, name='thanks'),
     path('maps/', ApprovedPotholeMapView.as_view(), name='maps'),
+    path('detail/<int:pk>/', PotholeDetailView.as_view(), name='pothole_detail'),
+
     #fin libre photoles
     
     path('admin-django/', admin.site.urls),
