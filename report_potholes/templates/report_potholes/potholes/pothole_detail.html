@@ -118,7 +118,7 @@
     });
     for (var i = 0; i < nearbyPotholesData.length; i++) {
         L.marker([parseFloat(nearbyPotholesData[i].latitude), parseFloat(nearbyPotholesData[i].longitude)],{icon: greenIcon}).addTo(map)
-            .bindPopup('<a href="' + nearbyPotholesData[i].url + '" target="_blank">Bache registrado antes.</a>');
+            .bindPopup('<a href="' + nearbyPotholesData[i].url + '" target="_blank">Bache registrado.</a>');
     }
 </script>
 {% endblock js %}

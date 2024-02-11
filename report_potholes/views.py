@@ -114,10 +114,11 @@ class ApprovedPotholesListView(LoginRequiredMixin, PermissionRequiredMixin, List
 
 from math import radians, sin, cos, sqrt, atan2
 
-class PotholeDetailMapView(DetailView):
+class PotholeDetailMapView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = Pothole
     template_name = 'report_potholes/potholes/pothole_detail.html'
     context_object_name = 'pothole'
+    permission_required = 'report_potholes.view_pothole'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
