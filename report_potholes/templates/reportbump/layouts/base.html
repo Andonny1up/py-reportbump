@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- reference CSS file -->
     <link rel="stylesheet" href="{% static 'reportbump/css/style.css' %}">
-    {% comment %} <link rel="stylesheet" href="./css/tablet.css" media="(min-width: 768px)"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'reportbump/css/tablet.css' %}" media="(min-width: 768px)">
     {% comment %} <link rel="stylesheet" href="./css/desktop.css" media="(min-width: 992px)"> {% endcomment %}
     {% block css %}
     
@@ -21,7 +21,7 @@
 </head>
 <body>
     <header>
-        <a href="#" class="logo"><i class="fas fa-utensils"></i>food</a>
+        <a href="{% url "index" %}" class="logo"><i class="fa fa-map"></i>TriniBache</a>
         <div id="menu-bar" class="fa fa-bars"></div>
         <nav class="navbar">
             <a href="{% url "index" %}">Inicio</a>
@@ -38,10 +38,8 @@
             <a href="#" class="btn">facebook</a>
             <a href="#" class="btn">twitter</a>
             <a href="#" class="btn">instagram</a>
-            <a href="https://github.com/Andonny1up" class="btn" target="_blank">github</a>
-            <a href="https://www.linkedin.com/in/andoni-barba-noe-894460184/" class="btn" target="_blank">linkedin</a>
         </div>
-        <h1 class="credit">created by <span>andonny1up</span> | andoni barba noe</h1>
+        <h1 class="credit">@Derechos <span>Reservados</span> | 2024</h1>
     </footer>
     <!-- scroll top button -->
     <a href="#home" class="fa fa-chevron-up" id="scroll-top"></a>

@@ -136,7 +136,8 @@ header .navbar{
     top: 100%;
     left: 0;
     right: 0;
-    background: #f7f7f7;
+    /* background: #f7f7f7; */
+    background-color: var(--red-primary-600);
     border-top: 0.1rem solid rgba(0,0,0,.1);
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
 }
@@ -145,16 +146,16 @@ header .navbar.active{
 }
 header .navbar a{
     font-size: 2rem;
-    color: var(--gray);
+    color: var(--white);
     margin: 1.5rem;
     padding: 1.5rem;
     display: block;
     border: 0.2rem solid rgba(0,0,0,.1);
-    border-left: 0.5rem solid var(--red);
-    background-color: #fff;
+    border-left: 0.5rem solid var(--white);
+    background-color: var(--red-primary-600);
 }
 header .navbar a:hover{
-    color: var(--red);
+    color: var(--white);
 }
 #menu-bar{
     font-size: 3rem;
@@ -200,6 +201,20 @@ header .navbar a:hover{
     font-size: 1.7rem;
     color: var(--gray);
     padding: 1rem 0;
+}
+.map-header{
+    font-size: 1.7rem;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--red-primary-600);
+    color: var(--white);
+}
+.pop-maker{
+    font-size: 1.5rem;
+    color: var(--gray) !important;
+}
+.pop-maker span{
+    color: var(--red);
 }
 /*panel*/
 .panel{

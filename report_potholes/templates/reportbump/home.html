@@ -4,8 +4,12 @@
 <section id="home"class="home">
     {% comment %} <h1 class="heading main">Reporta <span>ya</span></h1> {% endcomment %}
     <div class="content">
-        <a href="{% url "report" %}" class="btn-red">Reportar</a>
-        <a href="{% url "maps" %}" class="btn-red">Mapa de reportes</a>
+        <a href="{% url "report" %}" class="btn-red">
+            <i class="fa fa-paper-plane-o"></i> Reportar
+        </a>
+        <a href="{% url "maps" %}" class="btn-red">
+            <i class="fa fa-map-o"></i> Mapa de reportes
+        </a>
     </div>
 </section>
 {% endblock content %}
