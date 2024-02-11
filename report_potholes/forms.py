@@ -16,6 +16,6 @@ class PotholeForm(forms.ModelForm):
             'reported_by': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'photo': forms.FileInput(attrs={'class': 'form-control-file'}),
-            'latitude': forms.NumberInput(attrs={'class': 'form-control'}),
-            'longitude': forms.NumberInput(attrs={'class': 'form-control'}),
+            'latitude': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+            'longitude': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
         }

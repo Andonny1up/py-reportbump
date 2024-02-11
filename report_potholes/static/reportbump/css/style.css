@@ -169,7 +169,7 @@ header .navbar a:hover{
 
 /*Section Home*/
 .home{
-    padding-top: 8rem;
+    padding-top: 9rem;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -201,6 +201,16 @@ header .navbar a:hover{
     font-size: 1.7rem;
     color: var(--gray);
     padding: 1rem 0;
+}
+.home .content .p-thanks{
+    font-size: 2rem;
+    color: white;
+    max-width: 50rem;
+    text-align: center;
+    padding: 2rem;
+}
+.home .content .p-thanks i{
+    font-size: 6rem;
 }
 .map-header{
     font-size: 1.7rem;
@@ -277,11 +287,23 @@ header .navbar a:hover{
     max-width: 800px;
     background-color: var(--white);
     border-radius: .5rem;
-    padding: 2rem;
+    overflow: hidden;
+}
+.panel-header{
+    font-size: 1.7rem;
+    color: var(--white);
+    background-color: var(--red-primary-600);
+    padding: 2rem 2rem;
+}
+.panel-header a{
+    color: var(--white);
 }
 .panel-detail #img-photole{
     width: 100%;
     border-radius: 0.5rem;
+}
+.panel-detail .detail{
+    padding: 2rem;
 }
 .panel-detail .detail p{
     font-size: 1.7rem;
@@ -289,6 +311,7 @@ header .navbar a:hover{
 .panel-detail .detail .date{
     font-size: 1.5rem;
 }
+
 /*footer*/
 footer{
     background: black;

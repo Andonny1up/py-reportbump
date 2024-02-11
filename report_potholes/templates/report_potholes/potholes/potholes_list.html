@@ -50,10 +50,9 @@
                                             
                                         </td>
                                         <td>
-                                            {% comment %} <a href="{% url 'admin_ssu:report_potholes:approve_pothole' pothole.id %}">Aprobar</a> {% endcomment %}
+                                            {% if perms.report_potholes.delete_pothole %} 
                                             <a href="#" data-id="{{ pothole.id }}" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa fa-trash"></i> Eliminar</a>
-                                            {% comment %} <a href="{% url 'delete_pothole' pothole.id %}">Borrar</a> {% endcomment %}
-                                        </td>
+                                            {% endif %}
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -129,7 +128,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-success" data-bs-theme="dark">
-                <h1 class="modal-title fs-5" id="aproveModalLabel" style="color: white;"> <i class="fas fa-thumbs-up"></i> Aprobar</h1>
+                <h1 class="modal-title fs-5" id="aproveModalLabel" style="color: white;"> <i class="fa fa-thumbs-up"></i> Aprobar</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">  

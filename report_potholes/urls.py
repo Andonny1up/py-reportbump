@@ -9,4 +9,5 @@ urlpatterns = [
     path('approve_pothole/<int:pk>/', views.approve_pothole, name='approve_pothole'),
     path('delete/<int:pk>/', views.PotholeDeleteView.as_view(), name='delete_pothole'),
     path('potholes',views.ApprovedPotholesListView.as_view(), name='potholes_list'),
+    path('pothole/<int:pk>/', views.PotholeDetailMapView.as_view(), name='pothole_detail_map'),
 ]
