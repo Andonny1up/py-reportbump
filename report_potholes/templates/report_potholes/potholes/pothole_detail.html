@@ -108,7 +108,7 @@
     }).addTo(map);
 
     L.marker([parseFloat(potholeData.latitude), parseFloat(potholeData.longitude)]).addTo(map)
-        .bindPopup('<span>Bache Actual.</span> <br/> <img src="{{ pothole.photo.url }}" width="80px"/>')
+        .bindPopup('<span>Bache Actual.</span> <br/> <img src="{{ pothole.thumbnail.url }}" width="80px"/>')
         .openPopup();
     var greenIcon = L.icon({
         iconUrl: 'https://cdn-icons-png.flaticon.com/128/889/889647.png',
