@@ -178,7 +178,7 @@
     $(document).ready(function() {
         $('#deleteModal').on('show.bs.modal', function(e) {
             var userId = $(e.relatedTarget).data('id');
-            var url = "{% url 'admin_ssu:report_potholes:delete_pothole' 1234567890 %}".replace('1234567890', userId);
+            var url = "{% url 'admin_ssu:report_potholes:delete_potholepoint' 1234567890 %}".replace('1234567890', userId);
             $('#deleteForm').attr('action', url);
         });
     });

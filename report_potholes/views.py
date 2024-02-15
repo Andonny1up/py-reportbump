@@ -90,16 +90,14 @@ class PotholeDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView)
     model = Pothole
     success_url = reverse_lazy('admin_ssu:report_potholes:solicitude_potholes')
     permission_required = 'report_potholes.delete_pothole'
+    
 
-    # def delete(self, request, *args, **kwargs):
-    #     pothole = self.get_object()
-    #     # Borra el archivo de imagen del sistema de archivos
-    #     if pothole.photo:
-    #         if os.path.isfile(os.path.join(settings.MEDIA_ROOT, pothole.photo.path)):
-    #             print(settings.MEDIA_ROOT, pothole.photo.path)
-    #             os.remove(os.path.join(settings.MEDIA_ROOT, pothole.photo.path))
-    #     # Llama al método delete original para eliminar el objeto en la base de datos
-    #     return super().delete(request, *args, **kwargs)
+class PotholePointDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    """Vista para descartar y eliminar un bache."""
+    model = Pothole
+    success_url = reverse_lazy('admin_ssu:report_potholes:potholes_list')
+    permission_required = 'report_potholes.delete_pothole'
+
 
 class ApprovedPotholesListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = Pothole
