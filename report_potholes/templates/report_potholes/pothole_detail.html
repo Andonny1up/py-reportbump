@@ -10,7 +10,7 @@
         <div class="detail">
             <img id="img-photole" src="{{ pothole.display_image.url }}" alt="Foto del bache" >
             {% comment %} <div id="mapid" style="height: 400px; width: 100%;"></div> {% endcomment %}
-            <p class="date">{{ pothole.created_at }}</p>
+            {% comment %} <p class="date">{{ pothole.created_at }}</p> {% endcomment %}
             <p><strong>REPORTADO POR:</strong> {{ pothole.reported_by|upper }}</p>
         </div>
     </div>
