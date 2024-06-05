@@ -1,0 +1,43 @@
+<div class="table-responsive">
+    <div class="col-12">
+    
+        <table class="table table-hover">
+            <thead>
+                <tr >
+                    <th>N#</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in object_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    {% comment %} <td>
+                        <img src="{{ pothole.thumbnail.url}}" alt="" width="200px">    
+                    </td> {% endcomment %}
+                    <td>
+                        {{ category.name }}
+                    </td>
+                    <td>
+                        {% if perms.report_potholes.delete_pothole %} 
+                        <a href="#" data-id="{{ pothole.id }}" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa fa-trash"></i> Eliminar</a>
+                        {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="pagination" class="row">
+    <div class="col-md-6">
+        <span class="step-links d-flex justify-content-center justify-content-md-start">
+            <span class="current">
+                Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+        </span>
+    </div>
+    <div class="col">
+        {% include "admin_ssu/utils/pagination.html" %}
+    </div>
+</div>

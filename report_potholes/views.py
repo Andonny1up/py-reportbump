@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, TemplateView, DetailView, DeleteView
-from django.views.generic.edit import CreateView
-from .models import Pothole
+from django.views.generic.edit import CreateView, UpdateView
+from .models import Pothole, Category
 from .forms import PotholeForm
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core import serializers
@@ -12,7 +12,54 @@ from django.core.exceptions import PermissionDenied
 import json
 from django.conf import settings
 import os
+
 # Create your views here.
+class CategoryBrowseView(TemplateView):
+    template_name = 'report_potholes/category/browse.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Categorías'
+        return context
+
+
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'report_potholes/category/list.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search = self.request.GET.get('search', '')
+        if search:
+            queryset = queryset.filter(name__icontains=search)
+        return queryset
+    
+    def get_paginate_by(self, queryset):
+        return self.request.GET.get('paginate_by', self.paginate_by)
+
+
+class CategoryCreateView(CreateView):
+    model = Category
+    template_name = 'report_potholes/category/add.html'
+    fields = ('name', 'icon')
+    success_url = reverse_lazy('admin_ssu:report_potholes:category_browse')
+
+
+class CategoryDetailView(DetailView):
+    model = Category
+    template_name = 'category_detail.html'
+
+class CategoryUpdateView(UpdateView):
+    model = Category
+    template_name = 'category_edit.html'
+    fields = ('name', 'icon')
+
+class CategoryDeleteView(DeleteView):
+    model = Category
+    template_name = 'category_delete.html'
+    success_url = reverse_lazy('category_list')
+
 
 class PotholeCreateView(CreateView):
     """Vista para reportar un bache."""
