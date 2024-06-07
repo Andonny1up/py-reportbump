@@ -9,13 +9,17 @@ urlpatterns = [
     path('category/list', views.CategoryListView.as_view(), name='category_list'),
     # path('category/<int:pk>/', CategoryDetailView.as_view(), name='category_detail'),
     path('category/add/', views.CategoryCreateView.as_view(), name='category_add'),
-    # path('category/<int:pk>/edit/', CategoryUpdateView.as_view(), name='category_edit'),
-    # path('category/<int:pk>/delete/', CategoryDeleteView.as_view(), name='category_delete'),
+    path('category/<int:pk>/edit/', views.CategoryUpdateView.as_view(), name='category_edit'),
+    path('category/<int:pk>/delete/', views.CategoryDeleteView.as_view(), name='category_delete'),
     # admin potholes
+    path('potholes',views.PotholeBrowseView.as_view(), name='potholes_browse'),
+    path('potholes/list',views.PotholesListView.as_view(), name='potholes_list'),
+    path('pothole/add/', views.PotholeCreateView.as_view(), name='pothole_add'),
+
+
     path('solicitude', views.UnapprovedPotholeListView.as_view(), name='solicitude_potholes'),
     path('approve_pothole/<int:pk>/', views.approve_pothole, name='approve_pothole'),
     path('delete/<int:pk>/', views.PotholeDeleteView.as_view(), name='delete_pothole'),
     path('deletepoint/<int:pk>/', views.PotholePointDeleteView.as_view(), name='delete_potholepoint'),
-    path('potholes',views.ApprovedPotholesListView.as_view(), name='potholes_list'),
     path('pothole/<int:pk>/', views.PotholeDetailMapView.as_view(), name='pothole_detail_map'),
 ]

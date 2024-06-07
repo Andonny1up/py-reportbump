@@ -1,5 +1,6 @@
 from django import forms
 from .models import Pothole
+from django.core.exceptions import ValidationError
 
 class PotholeForm(forms.ModelForm):
     class Meta:
@@ -19,3 +20,36 @@ class PotholeForm(forms.ModelForm):
             'latitude': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
             'longitude': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
         }
+
+
+class ProyectForm(forms.ModelForm):
+    year_management = forms.ChoiceField(choices=[(r,r) for r in range(2000, 2030)],label='Gestión', widget=forms.Select(), required=False)
+
+    class Meta:
+        model = Pothole
+        fields = ['title','photo','category', 'year_management', 'latitude', 'longitude']
+        labels = {
+            'title': 'Titúlo',
+            'category': 'Categoria',
+            'photo': 'Foto',
+            'latitude': 'Latitud',
+            'longitude': 'Longitud',
+        }
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required': 'required'}),
+            'category': forms.Select(attrs={'class': 'form-select'}),
+            'photo': forms.FileInput(attrs={'class': 'form-control-file'}),
+            'year_management': forms.Select(attrs={'class': 'form-control','required': 'required'}),
+            'latitude': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly','required': 'required'},),
+            'longitude': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly','required': 'required'}),
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        latitude = cleaned_data.get('latitude')
+        longitude = cleaned_data.get('longitude')
+
+        if latitude is None or longitude is None:
+            raise ValidationError("Los campos de latitud y longitud son obligatorios.")
+
+        return cleaned_data

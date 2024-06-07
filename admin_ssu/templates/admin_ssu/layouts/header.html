@@ -64,9 +64,25 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'admin_ssu:report_potholes:potholes_list' %}">
+                            <a class="nav-link" href="{% url 'admin_ssu:report_potholes:potholes_browse' %}">
                                 <i class="fa fa-map-marker"></i>Puntos Registrados
                             </a>
+                        </li>
+                    {% endif %}
+                    {% if perms.report_potholes.view_category %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="	fa fa-sliders"></i> Opciones
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% if perms.report_potholes.view_category %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url "admin_ssu:report_potholes:category_browse" %}">
+                                        <i class="fa fa-bookmark"></i> Categorias
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
                         </li>
                     {% endif %}
                     {% if perms.auth.view_user or perms.auth.view_group or perms.auth.view_permission %}
@@ -99,8 +115,6 @@
                             </ul>
                         </li>
                     {% endif %}
-                    
-                    
                     {% comment %} <li class="nav-item">
                         <a class="nav-link" href="">Cliente</a>
                     </li>

@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, TemplateView, DetailView, DeleteView
 from django.views.generic.edit import CreateView, UpdateView
 from .models import Pothole, Category
-from .forms import PotholeForm
+from .forms import PotholeForm, ProyectForm
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core import serializers
 from django.core.exceptions import PermissionDenied
@@ -41,9 +41,14 @@ class CategoryListView(ListView):
 
 class CategoryCreateView(CreateView):
     model = Category
-    template_name = 'report_potholes/category/add.html'
+    template_name = 'report_potholes/category/add_edit.html'
     fields = ('name', 'icon')
     success_url = reverse_lazy('admin_ssu:report_potholes:category_browse')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['action'] = 'Crear'
+        return context
 
 
 class CategoryDetailView(DetailView):
@@ -52,22 +57,60 @@ class CategoryDetailView(DetailView):
 
 class CategoryUpdateView(UpdateView):
     model = Category
-    template_name = 'category_edit.html'
+    template_name = 'report_potholes/category/add_edit.html'
     fields = ('name', 'icon')
+    success_url = reverse_lazy('admin_ssu:report_potholes:category_browse')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['action'] = 'Actualizar'
+        return context
 
 class CategoryDeleteView(DeleteView):
     model = Category
-    template_name = 'category_delete.html'
-    success_url = reverse_lazy('category_list')
+    # template_name = 'category_delete.html'
+    success_url = reverse_lazy('admin_ssu:report_potholes:category_browse')
+
+#Pothole admin
+class PotholeBrowseView(TemplateView):
+    template_name = 'report_potholes/potholes/browse.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Proyectos Registrados'
+        return context
+    
+
+class PotholesListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    model = Pothole
+    template_name = 'report_potholes/potholes/list.html'
+    context_object_name = 'potholes'
+    paginate_by = 10
+    permission_required = 'report_potholes.view_pothole'
+
+    def get_queryset(self):
+        return Pothole.objects.filter(approved=True)
+    
+    def get_paginate_by(self, queryset):
+        return self.request.GET.get('paginate_by', self.paginate_by)
 
 
 class PotholeCreateView(CreateView):
-    """Vista para reportar un bache."""
+    """Vista para reportar un proyecto."""
     model = Pothole
-    form_class = PotholeForm
-    template_name = 'report_potholes/pothole_add.html'
-    # success_url = '/report_potholes/thanks/'
-    success_url = reverse_lazy('thanks')
+    form_class = ProyectForm
+    # template_name = 'report_potholes/pothole_add.html'
+    # success_url = reverse_lazy('thanks')
+    template_name = 'report_potholes/potholes/add_edit.html'
+    success_url = reverse_lazy('admin_ssu:report_potholes:potholes_browse')
+    
+    def form_valid(self, form):
+        form.instance.approved = True
+        return super().form_valid(form)
+
+# end pothole admin   
+
+
     
 
 class PotholeThanksView(TemplateView):
@@ -144,17 +187,6 @@ class PotholePointDeleteView(LoginRequiredMixin, PermissionRequiredMixin, Delete
     model = Pothole
     success_url = reverse_lazy('admin_ssu:report_potholes:potholes_list')
     permission_required = 'report_potholes.delete_pothole'
-
-
-class ApprovedPotholesListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-    model = Pothole
-    template_name = 'report_potholes/potholes/potholes_list.html'
-    context_object_name = 'potholes'
-    paginate_by = 10
-    permission_required = 'report_potholes.view_pothole'
-
-    def get_queryset(self):
-        return Pothole.objects.filter(approved=True)
     
 
 from math import radians, sin, cos, sqrt, atan2

@@ -6,12 +6,11 @@
     <div class="row">
         <div class="col">
             <h1 class="heading">
-                <i class="fa fa-bookmark"></i> {{ title }}
-                {% if perms.report_potholes.add_category %}
-                <a href="{% url "admin_ssu:report_potholes:category_add" %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i>Nuevo</a>
+                <i class="fa fa-map-marker"></i> Puntos Registrados
+                {% if perms.report_potholes.add_photole %}
+                <a href="{% url "admin_ssu:report_potholes:pothole_add" %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i>Nuevo</a>
                 {% endif %}
             </h1>
-            
         </div>
     </div>
     <div class="row">
@@ -26,7 +25,7 @@
                             <option value="100">100</option>
                             <option value="1">1</option>
                         </select>
-                        <input class="form-control" type="text" id="search" placeholder="Buscar usuarios">
+                        <input class="form-control" type="text" id="search" placeholder="Buscar proyecto">
                     </div>
                     <div id='results'>
 
@@ -62,11 +61,11 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-danger" data-bs-theme="dark">
-          <h1 class="modal-title fs-5" id="deleteModalLabel" style="color: white;"> <i class="fa fa-trash"></i> Eliminar</h1>
+          <h1 class="modal-title fs-5" id="deleteModalLabel" style="color: white;"> <i class="fa fa-trash"></i> Descartar</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">  
-            <p>¿Está seguro de que desea Eliminar este registro?</p>
+            <p>¿Está seguro de que desea descartar este ?</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Cancelar</button>
@@ -85,7 +84,7 @@
     $(document).ready(function() {
         function load_data(search, paginate_by, page) {
             $.ajax({
-                url: "{% url 'admin_ssu:report_potholes:category_list' %}",
+                url: "{% url 'admin_ssu:report_potholes:potholes_list' %}",
                 method: "GET",
                 data: {
                     search: search,
@@ -118,7 +117,6 @@
     });
     
     /* traer la lista->*/
-
     $(document).ready(function() {
         $('#aproveModal').on('show.bs.modal', function(e) {
             var userId = $(e.relatedTarget).data('id');
@@ -128,8 +126,8 @@
     });
     $(document).ready(function() {
         $('#deleteModal').on('show.bs.modal', function(e) {
-            var itemId = $(e.relatedTarget).data('id');
-            var url = "{% url 'admin_ssu:report_potholes:category_delete' 1234567890 %}".replace('1234567890', itemId);
+            var userId = $(e.relatedTarget).data('id');
+            var url = "{% url 'admin_ssu:report_potholes:delete_potholepoint' 1234567890 %}".replace('1234567890', userId);
             $('#deleteForm').attr('action', url);
         });
     });
@@ -137,6 +135,5 @@
 {% endblock js %}
 {% block css %}
 <style>
-    
 </style>
 {% endblock css %}

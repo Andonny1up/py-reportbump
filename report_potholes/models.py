@@ -26,6 +26,7 @@ class Pothole(models.Model):
                                    processors=[ResizeToFit(800)],  # Para la imagen a mostrar en grande
                                    format='JPEG',
                                    options={'quality': 80})
+    year_management = models.IntegerField('Gestión', null=True, blank=True)
     latitude = models.DecimalField(max_digits=9, decimal_places=7, null=True, blank=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=7, null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
