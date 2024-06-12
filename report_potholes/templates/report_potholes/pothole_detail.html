@@ -2,17 +2,10 @@
 {% block title %}Bache Reportado{% endblock title %}
 {% block content %}
 <section id="home" class="home">
-    
-    <div class="panel-detail">
-        <div class="panel-header">
-            <a href="{% url "maps" %}" class=""> <i class="fa fa-arrow-left"></i> volver al Mapa de reportes</a>
-        </div>
-        <div class="detail">
-            <img id="img-photole" src="{{ pothole.display_image.url }}" alt="Foto del bache" >
-            {% comment %} <div id="mapid" style="height: 400px; width: 100%;"></div> {% endcomment %}
-            {% comment %} <p class="date">{{ pothole.created_at }}</p> {% endcomment %}
-            <p><strong>REPORTADO POR:</strong> {{ pothole.reported_by|upper }}</p>
-        </div>
+    <div class="container">
+        <h1 class="h1">{{pothole.title}}</h1>
+        <img class="img" src="{{ pothole.display_image.url }}" alt="Foto del bache" width="300px">
+        <h2>Gestión: {{pothole.year_management}}</h2>
     </div>
 </section>
 {% endblock content %}

@@ -14,8 +14,9 @@ from django.conf import settings
 import os
 
 # Create your views here.
-class CategoryBrowseView(TemplateView):
+class CategoryBrowseView(LoginRequiredMixin, PermissionRequiredMixin,TemplateView):
     template_name = 'report_potholes/category/browse.html'
+    permission_required = 'report_potholes.view_category'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -23,9 +24,10 @@ class CategoryBrowseView(TemplateView):
         return context
 
 
-class CategoryListView(ListView):
+class CategoryListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = Category
     template_name = 'report_potholes/category/list.html'
+    permission_required = 'report_potholes.view_category'
     paginate_by = 10
 
     def get_queryset(self):
@@ -39,11 +41,12 @@ class CategoryListView(ListView):
         return self.request.GET.get('paginate_by', self.paginate_by)
 
 
-class CategoryCreateView(CreateView):
+class CategoryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Category
     template_name = 'report_potholes/category/add_edit.html'
     fields = ('name', 'icon')
     success_url = reverse_lazy('admin_ssu:report_potholes:category_browse')
+    permission_required = 'report_potholes.add_category'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -55,25 +58,28 @@ class CategoryDetailView(DetailView):
     model = Category
     template_name = 'category_detail.html'
 
-class CategoryUpdateView(UpdateView):
+class CategoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Category
     template_name = 'report_potholes/category/add_edit.html'
     fields = ('name', 'icon')
     success_url = reverse_lazy('admin_ssu:report_potholes:category_browse')
+    permission_required = 'report_potholes.change_category'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['action'] = 'Actualizar'
         return context
 
-class CategoryDeleteView(DeleteView):
+class CategoryDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Category
+    permission_required = 'report_potholes.delete_category'
     # template_name = 'category_delete.html'
     success_url = reverse_lazy('admin_ssu:report_potholes:category_browse')
 
 #Pothole admin
-class PotholeBrowseView(TemplateView):
+class PotholeBrowseView(LoginRequiredMixin, PermissionRequiredMixin,TemplateView):
     template_name = 'report_potholes/potholes/browse.html'
+    permission_required = 'report_potholes.view_pothole'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -95,7 +101,7 @@ class PotholesListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         return self.request.GET.get('paginate_by', self.paginate_by)
 
 
-class PotholeCreateView(CreateView):
+class PotholeCreateView(LoginRequiredMixin, PermissionRequiredMixin,CreateView):
     """Vista para reportar un proyecto."""
     model = Pothole
     form_class = ProyectForm
@@ -103,10 +109,30 @@ class PotholeCreateView(CreateView):
     # success_url = reverse_lazy('thanks')
     template_name = 'report_potholes/potholes/add_edit.html'
     success_url = reverse_lazy('admin_ssu:report_potholes:potholes_browse')
+    permission_required = 'report_potholes.add_pothole'
     
     def form_valid(self, form):
         form.instance.approved = True
         return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['action'] = 'Crear'
+        return context
+    
+
+class PotholeUpdateView(LoginRequiredMixin, PermissionRequiredMixin,UpdateView):
+    """Vista para actualizar un proyecto."""
+    model = Pothole
+    form_class = ProyectForm
+    template_name = 'report_potholes/potholes/add_edit.html'
+    success_url = reverse_lazy('admin_ssu:report_potholes:potholes_browse')
+    permission_required = 'report_potholes.change_pothole'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['action'] = 'Editar'
+        return context
 
 # end pothole admin   
 
@@ -134,9 +160,12 @@ class ApprovedPotholeMapView(TemplateView):
         potholes_data = []
         for pothole in potholes:
             pothole_data = {
+                'title': pothole.title.upper() if pothole.title else 'SIN TÍTULO',
                 'latitude': pothole.latitude,
                 'longitude': pothole.longitude,
-                'url': reverse('pothole_detail', args=[pothole.id])
+                'url': reverse('pothole_detail', args=[pothole.id]),
+                'image': pothole.thumbnail.url if pothole.thumbnail else None,
+                'category_icon': pothole.category.icon.url if pothole.category and pothole.category.icon else None
             }
             potholes_data.append(pothole_data)
         context['potholes'] = json.dumps(potholes_data, cls=DjangoJSONEncoder, ensure_ascii=False)

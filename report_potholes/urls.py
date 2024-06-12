@@ -15,6 +15,7 @@ urlpatterns = [
     path('potholes',views.PotholeBrowseView.as_view(), name='potholes_browse'),
     path('potholes/list',views.PotholesListView.as_view(), name='potholes_list'),
     path('pothole/add/', views.PotholeCreateView.as_view(), name='pothole_add'),
+    path('pothole/<int:pk>/edit/', views.PotholeUpdateView.as_view(), name='pothole_edit'),
 
 
     path('solicitude', views.UnapprovedPotholeListView.as_view(), name='solicitude_potholes'),

@@ -50,7 +50,7 @@
                     </td> {% endcomment %}
                     <td>
                         {% if perms.report_potholes.change_pothole %}
-                        <a href="{% url 'admin_ssu:report_potholes:category_edit' pothole.id %}" class="btn btn-sm btn-primary"><i class="fa fa-edit">
+                        <a href="{% url 'admin_ssu:report_potholes:pothole_edit' pothole.id %}" class="btn btn-sm btn-primary"><i class="fa fa-edit">
                             </i><span class="txt-btn"> Editar</span>
                         </a>
                         {% endif %}

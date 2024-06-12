@@ -48,6 +48,13 @@ document.getElementById('id_longitude').value = e.target.getLatLng().lng.toFixed
     }).addTo(map);
 
     var marker = L.marker([-14.835, -64.90428], {draggable: true}).addTo(map);
+    {% if action == 'Editar' %}
+        var lat = document.getElementById('id_latitude').value;
+        var lng = document.getElementById('id_longitude').value;
+        marker.setLatLng([lat, lng]);
+        map.setView([lat, lng], 13);
+    {% endif %}
+    {% comment %} var marker = L.marker([lat, lng], {draggable: true}).addTo(map); {% endcomment %}
 
     function updateLatLng(e) {
       

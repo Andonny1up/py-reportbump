@@ -34,10 +34,22 @@
         });
         
         potholes.forEach(function(pothole) {
-            var marker = L.marker([pothole.latitude, pothole.longitude], {icon: greenIcon}).addTo(map);
-            //var marker = L.marker([pothole.latitude, pothole.longitude]).addTo(map);
-            console.log(pothole);
-            marker.bindPopup('<a class="pop-maker" href="' + pothole.url + '"><i class="fa fa-info-circle"></i> Más <span>información.</span></a>');
+            //var marker = L.marker([pothole.latitude, pothole.longitude], {icon: greenIcon}).addTo(map);
+            if ( pothole.category_icon != null ) {
+                console.log(pothole.category_icon);
+                var iconUrl = pothole.category_icon
+                var icon = L.icon({
+                    iconUrl: iconUrl,
+                    iconSize: [45, 61],
+                    iconAnchor: [22, 41],
+                    popupAnchor: [0, -41]
+                });
+                var marker = L.marker([pothole.latitude, pothole.longitude], {icon: icon}).addTo(map);
+            } else {
+                var marker = L.marker([pothole.latitude, pothole.longitude]).addTo(map);
+            }
+            //console.log(pothole);
+            marker.bindPopup('<div style="text-align: center" ><a class="pop-maker" href="' + pothole.url + '"><span>'+ pothole.title +'</span></a> <br> <img src="' + pothole.image + '" alt="" width="100px"></div>');
         });
     }
 </script>

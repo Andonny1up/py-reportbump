@@ -6,6 +6,7 @@
                 <tr>
                     <th>N#</th>
                     <th>Nombre</th>
+                    <th>Icono</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -18,6 +19,14 @@
                     </td> {% endcomment %}
                     <td>
                         {{ category.name }}
+                    </td>
+                    <td>
+                        {% if category.icon %}
+                            <img src="{{ category.icon.url }}" alt="" width="50px">
+                        {% else %}
+                            <span class="text-muted
+                            ">No tiene icono</span>
+                        {% endif %}
                     </td>
                     <td class="text-end">
                         {% if perms.report_potholes.change_category %}
