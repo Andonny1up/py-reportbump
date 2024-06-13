@@ -6,6 +6,12 @@
         <h1 class="h1">{{pothole.title}}</h1>
         <img class="img" src="{{ pothole.display_image.url }}" alt="Foto del bache" width="300px">
         <h2>Gestión: {{pothole.year_management}}</h2>
+        <p class="contenido">
+            <strong>Categoria:</strong> {{ pothole.category.name }}
+        </p>
+        <p class="contenido">
+            {{ pothole.description }}
+        </p>
     </div>
 </section>
 {% endblock content %}

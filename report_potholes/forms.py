@@ -27,7 +27,7 @@ class ProyectForm(forms.ModelForm):
 
     class Meta:
         model = Pothole
-        fields = ['title','photo','category', 'year_management', 'latitude', 'longitude']
+        fields = ['title','photo','description','category', 'year_management', 'latitude', 'longitude']
         labels = {
             'title': 'Titúlo',
             'category': 'Categoria',
@@ -39,6 +39,7 @@ class ProyectForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control', 'required': 'required'}),
             'category': forms.Select(attrs={'class': 'form-select'}),
             'photo': forms.FileInput(attrs={'class': 'form-control-file'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'year_management': forms.Select(attrs={'class': 'form-control','required': 'required'}),
             'latitude': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly','required': 'required'},),
             'longitude': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly','required': 'required'}),

@@ -16,6 +16,7 @@ class Pothole(models.Model):
     reported_by = models.CharField('reportado por',max_length=255, null=True, blank=True)
     phone = models.CharField('teléfono',max_length=15, null=True, blank=True)
     title = models.CharField('título',max_length=255, null=True, blank=True)
+    description = models.TextField('descripción', null=True, blank=True)
     approved = models.BooleanField('aprobado',default=False)
     photo = models.ImageField('foto',upload_to='potholes/')
     thumbnail = ImageSpecField(source='photo',

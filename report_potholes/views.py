@@ -133,6 +133,24 @@ class PotholeUpdateView(LoginRequiredMixin, PermissionRequiredMixin,UpdateView):
         context = super().get_context_data(**kwargs)
         context['action'] = 'Editar'
         return context
+    
+
+class PotholeDetailviewAdmin(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+    model = Pothole
+    template_name = 'report_potholes/potholes/detail.html'
+    context_object_name = 'pothole'
+    permission_required = 'report_potholes.view_pothole'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
+
+    def get_queryset(self):
+        return Pothole.objects.filter(approved=True)
+
+    def get_paginate_by(self, queryset):
+        return self.request.GET.get('paginate_by', self.paginate_by)
 
 # end pothole admin   
 
@@ -149,14 +167,12 @@ class ApprovedPotholeMapView(TemplateView):
     template_name = 'report_potholes/pothole_maps.html'  # reemplaza con el nombre de tu plantilla
 
     def get_context_data(self, **kwargs):
-        # context = super().get_context_data(**kwargs)
-        # potholes = Pothole.objects.filter(approved=True).values('latitude', 'longitude')
-        # context['potholes'] = json.dumps(list(potholes), cls=DjangoJSONEncoder, ensure_ascii=False)
-        # # context['potholes'] = Pothole.objects.filter(approved=True)
-        # return context
-    
         context = super().get_context_data(**kwargs)
-        potholes = Pothole.objects.filter(approved=True)
+        category = self.request.GET.get('category')
+        if category:
+            potholes = Pothole.objects.filter(approved=True, category__id=category)
+        else:
+            potholes = Pothole.objects.filter(approved=True)
         potholes_data = []
         for pothole in potholes:
             pothole_data = {
@@ -170,6 +186,7 @@ class ApprovedPotholeMapView(TemplateView):
             potholes_data.append(pothole_data)
         context['potholes'] = json.dumps(potholes_data, cls=DjangoJSONEncoder, ensure_ascii=False)
         context['total_potholes'] = potholes.count()
+        context['categories'] = Category.objects.all()
         return context
     
 
