@@ -308,11 +308,57 @@ header .navbar a:hover{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    
     /* background: 
         linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
         url(https://images.pexels.com/photos/13622966/pexels-photo-13622966.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) no-repeat;
     background-size: cover;
     background-position: center; */
+}
+.section-hero{
+    /* Gradiente radial*/
+    padding-top: 9rem;
+    height: 520px;
+    background: radial-gradient(circle, var(--red-light-500), var(--red-dark-700));
+    background: linear-gradient(180deg, #ffffff 10%, #ffffff 80%, var(--red-light-500) 90%);
+}
+.section-hero .content{
+    padding-top: 9rem;
+    margin: auto;
+    max-width: 620px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.section-about{
+    padding: 2rem;
+    padding-bottom: 9rem;
+    display: flex;
+    min-height: 320px;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--red-light-500);
+}
+.section-about div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.section-about div h2{
+    color: var(--white);
+    font-size: 3rem;
+    text-align: center;
+}
+.section-about div p{
+    color: var(--white);
+    font-size: 1.7rem;
+    text-align: center;
+}
+.section-mas{
+    min-height: 520px;
 }
 .home .content{
     display: flex;

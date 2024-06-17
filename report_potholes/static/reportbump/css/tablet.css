@@ -14,3 +14,7 @@ header .navbar a{
     margin: 0 0 0 2rem;
     padding: 0;
 }
+.section-about{
+    flex-direction: row;
+    gap: 1rem;
+}

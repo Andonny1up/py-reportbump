@@ -16,7 +16,6 @@
                         {% csrf_token %}
                         {% for field in form %}
                             <p>
-                                
                                 {{ field.label_tag }} {{ field }}
                                 {{ field.errors }}
                                 {% if field.help_text %}
