@@ -1,30 +1,16 @@
-let menu = document.querySelector('#menu-bar');
-let navbar = document.querySelector('.navbar');
+// selecciona la barra de navegación
+const navbar = document.querySelector('.navbar');
 
-menu.onclick = () =>{
+// escucha el evento de scroll en la página
+window.addEventListener('scroll', () => {
+  // obtiene la posición actual de desplazamiento
+  const scrollPosition = window.scrollY;
 
-    menu.classList.toggle('fa-times');
-    navbar.classList.toggle('active');
-
-}
-
-window.onscroll = () =>{
-
-    menu.classList.remove('fa-times');
-    navbar.classList.remove('active');
-
-    if(window.scrollY > 60){
-        document.querySelector('#scroll-top').classList.add('active');
-    }else{
-        document.querySelector('#scroll-top').classList.remove('active');
-    }
-}
-
-// function loader(){
-//     document.querySelector('.loader-container').classList.add('fade-out');
-// }
-// function fadeOut(){
-//     setInterval(loader,3000);
-// }
-
-// window.onload = fadeOut();
+  // si el usuario ha desplazado más allá de la altura de la barra de navegación, agrega la clase de CSS para cambiar el estilo de la barra de navegación
+  if (scrollPosition > navbar.offsetHeight) {
+    navbar.classList.add('navbar-scrolled');
+  } else {
+    // de lo contrario, quita la clase de CSS para volver al estilo original de la barra de navegación
+    navbar.classList.remove('navbar-scrolled');
+  }
+});

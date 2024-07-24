@@ -1,25 +1,190 @@
+
 {% extends "reportbump/layouts/base.html" %}
-{% block title %}SINSUETA{% endblock title %}
+{% load static %}
+{% block title %}Tesoros del Beni{% endblock title %}
 {% block content %}
-<section class="section-hero">
-    <div class="content">
-        <h1 class="h1" style="text-align: center; color: #010101;">Descubre los proyectos de nuestra gestión</h1>
-        <a href="{% url "maps" %}" class="btn-red" style="width: fit-content;">
-            
-            <h4><i class="fa fa-map-o"></i> Ir al Mapa</h4>
-        </a>
+<!-- Carousel -->
+{% comment %} <section class="Carousel">
+    <div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-pause=“false”>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'reportbump/images/img1.jpeg' %}" class="d-block w-100" alt="Hawai playa">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'reportbump/images/img1.jpeg' %}" class="d-block w-100" alt="Mar en Hawai">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'reportbump/images/img1.jpeg' %}" class="d-block w-100" alt="Playa en Hawai">
+        </div>
+      </div>
+      <div class="overlay">
+        <div class="container h-100">
+          <div class="row align-items-center h-100">
+            <div class="col text-center">
+                <div class="limit-text-container">
+                    <p class="pre-title-page">Empieza a Explorar</p>
+                    <h1 class="title-page">Descubre los Tesoros Ocultos del Beni</h1>
+                </div>
+                <div class="mt-4">
+                    
+                    <a href="{% url "maps" %}" class="btn cta-btn-outline">IR AL MAPA</a>
+                    
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section> {% endcomment %}
+{% comment %} <a href="{% url "report" %}" class="btn my-btn-primary">COMPARTE TU DESCUBRIMIENTO</a> {% endcomment %}
+<section class="section-gradient">
+    <div class="container" style="position: relative">
+        <div class="row">
+            <div class="col d-flex align-items-center order-md-2">
+                <div class="py-5 text-center text-md-start">
+                    <span>Lorem ipsum dolor sit amet.</span>
+                    <h1>Lorem ipsum dolor sit amet.</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam illo eos laudantium veniam harum ducimus!</p>
+                    <div >
+                        <a href="#" class="btn my-btn-primary">Nosotros</a>
+                        <a href="{% url "maps" %}" class="btn cta-btn-outline" style="border-radius: 0px">IR AL MAPA</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md d-flex justify-content-center">
+                <img src="{% static 'reportbump/images/doctor-unzueta.png' %}" style="width: 100%; max-width: 500px">
+            </div>
+        </div>
+        {% comment %} <div class="banner-float">
+            <h5 class="text-center">Lorem ipsum dolor sit amet.</h5>
+            <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam illo eos laudantium veniam harum ducimus!</p>
+                    
+        </div> {% endcomment %}
     </div>
 </section>
-<section class="section-about">
-    <div>
-        <h2 class="h2">¿Qué es SINSUETA?</h2>
-        <p>SINSUETA es una plataforma que te permite conocer los proyectos de nuestra gestión de manera transparente y en tiempo real. Aquí podrás ver los proyectos que estamos realizando en tu barrio, ciudad o municipio.</p>
+<section id="about" class="about py-5">
+    <div class="container mb-5">
+        <div class="limit-text-container" >
+            <p class="pre-subtitle-page">Nosotros</p>
+            <h2 class="subtitle">Acerca de Tesoros del Beni</h2>
+        </div>
     </div>
-    <div>
-        <h2 class="h2">¿Cómo funciona?</h2>
-        <p>Para ver los proyectos de nuestra gestión, solo debes hacer clic en el botón "Ir al Mapa" y podrás ver los proyectos en un mapa interactivo. Si deseas más información sobre un proyecto en particular, solo debes hacer clic en el marcador correspondiente.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 p-md-0">
+                <div class="d-flex align-items-center" style="height: 100%">
+                    <p style="font-size: 20px">
+                        El proyecto "Tesoros del Beni" nace con el propósito de explorar, documentar y compartir los fascinantes descubrimientos arqueológicos en la región de Beni, Bolivia. Nuestro objetivo es desvelar los misterios del pasado y preservar el patrimonio cultural para futuras generaciones.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 p-0">
+                <div class="d-flex justify-content-center">
+                    <div class="">
+                        <img src="{% static 'reportbump/images/obras_unzueta.png' %}" 
+                            style="width: 100%; max-width: 500px"
+                            alt="Obras Realizadas">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
-<section class="section-mas">
-</section
+
+<section id="discoveries" class="discoveries section-dark">
+    <div class="container">
+        <div class="limit-text-container" >
+            <p class="pre-subtitle-page">Descubre</p>
+            <h2 class="subtitle">Descubrimientos Recientes</h2>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12 col-md-6">
+                <div class="gallery">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="{% static 'tesorosbeni/images/img1.jpg' %}" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="{% static 'tesorosbeni/images/img2.jpg' %}" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="{% static 'tesorosbeni/images/img3.jpg' %}" class="d-block w-100" alt="...">
+                          </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="discovery-info">
+                    <h3>Descubrimiento Reciente</h3>
+                    <p>
+                        Explora nuestra galería de imágenes para ver los artefactos, ruinas y otros objetos arqueológicos enviados por arqueólogos y miembros de la comunidad. Cada imagen viene acompañada de una breve descripción y la ubicación del hallazgo, ofreciendo una visión más profunda de la rica historia y cultura de Beni.
+                    </p>
+                    <a href="#" class="btn cta-btn-outline">Más Información</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="banner">
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="my-border-dark">
+            <a href="#submit-form" class="btn cta-btn-dark">IR AL MAPA</a>
+        </div>
+    </div>
+</section>
+
+<section id="submit" class="submit-findings section-dark">
+    <div class="container">
+        <div class="limit-text-container" >
+            <p class="pre-subtitle-page">Comparte</p>
+            <h2 class="subtitle">Comparte tus Descubrimientos</h2>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12 col-md-6">
+                <p>
+                    En "Tesoros del Beni", creemos que cada hallazgo es valioso y merece ser compartido con el mundo. Por eso, invitamos a todos los exploradores, tanto locales como visitantes, a contribuir a nuestro proyecto enviando fotos y ubicaciones de sus propios descubrimientos arqueológicos en la región de Beni.
+                </p>
+                <p>
+                    Para participar, simplemente completa nuestro formulario de envío, donde podrás subir tus fotos y proporcionar la ubicación exacta de tu hallazgo. Tu contribución no solo ayudará a enriquecer nuestro mapa interactivo, sino que también jugará un papel importante en la preservación y difusión de la rica historia de Beni.
+                </p>
+                <a href="#submit-form" class="btn my-btn-primary">Comparte Ahora</a>
+            </div>
+            <div class="col-12 col-md-6">
+                <img src="{% static 'tesorosbeni/images/img2.jpg' %}" height="300px" class="d-block w-100" alt="...">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="map" class="interactive-map section-dark">
+    <div class="container">
+        <div class="limit-text-container" >
+            <p class="pre-subtitle-page">Explorar</p>
+            <h2 class="subtitle">Explora el Mapa</h2>
+        </div>
+        <div id="map-container">
+            <!-- Mapa interactivo -->
+        </div>
+        <div class="d-flex justify-content-center mt-5">
+            <a href="#submit-form" class="btn cta-btn-outline">Explorar Ahora</a>
+        </div>
+    </div>
+    
+</section>
+<!-- Carousel -->
 {% endblock content %}
