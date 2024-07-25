@@ -8,6 +8,23 @@
     <link rel="stylesheet" href="{% static 'admin_ssu/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'reportbump/css/style.css' %}">
+    {% block meta %}
+        <meta name="description" content="El Beni Avanza muestra las obras y proyectos realizados durante la gestión del gobernador, mejorando la calidad de vida en el Beni.">
+        <meta name="keywords" content="Beni, obras, proyectos, gobernador, desarrollo, infraestructura, bienestar">
+        <meta name="author" content="CodigoSimple.Dev">
+
+        <meta property="og:title" content="El Beni Avanza - Obras que Transforman">
+        <meta property="og:description" content="El Beni Avanza muestra las obras y proyectos realizados durante la gestión del gobernador, mejorando la calidad de vida en el Beni.">
+        {% comment %} <meta property="og:image" content="url-de-la-imagen.jpg">
+        <meta property="og:url" content="url-de-tu-pagina-web"> {% endcomment %}
+        <meta property="og:type" content="website">
+       
+    {% endblock meta %}
+    {% comment %} <meta property="og:title" content="{% block og_title %}Mi Sitio Web{% endblock og_title %}">
+    <meta property="og:description" content="{% block og_description %}Descripción por defecto de mi sitio web.{% endblock og_description %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock og_url %}">
+    <meta property="og:image" content="{% block og_image %}URL de la imagen por defecto{% endblock og_image %}"> {% endcomment %}
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
