@@ -1,7 +1,9 @@
+
 {% extends "reportbump/layouts/base_vacio.html" %}
-{% block title %}Mapa de reportes{% endblock title %}
+{% load static %}
+{% block title %}Mapa{% endblock title %}
 {% block content %}
-<section id="main-map">
+<section id="main-map" class="section-gradient">
     <div class="container_map">
         <aside>
             <nav class="menu-aside">
@@ -14,14 +16,17 @@
                     </li> {% endcomment %}
                 </ul>
             </nav>
-            <div id="menu-aside" class="options-aside">
+            <div id="menu-aside" class="options-aside section-gradient">
                 <div class="menu_top_aside">
-                    <h3>Filtros</h3>
-                    <i id="btn-aside" class="fa fa-close"></i>
+                    <h3 style="color:white;margin: 0;">Filtrar</h3>
+                    <i id="btn-aside" class="fa fa-close" style="font-size: 1.5rem"></i>
+                </div>
+                <div class="col-12 col-md d-flex justify-content-center">
+                    <img src="{% static 'reportbump/images/doctor-unzueta.png' %}" style="width: 100%; max-width: 500px">
                 </div>
                 <form class="form-filter" action="">
                     <select name="category" id="">
-                        <option value="">Todas las categorias</option>
+                        <option value="">Todas las Obras</option>
                         {% for category in categories %}
                             {% if request.GET.category == category.id|stringformat:"s" %}
                                 <option value="{{ category.id }}" selected>{{ category.name }}</option>
@@ -30,7 +35,7 @@
                             {% endif %}
                         {% endfor %}
                     </select>
-                    <button type="submit" class="btn-red">Filtrar</button>
+                    <button type="submit" class="btn my-btn-primary">Filtrar</button>
                 </form>
             </div>
         </aside>

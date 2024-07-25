@@ -20,8 +20,20 @@
     --color-fondo-950: #0d3c22;
 }
 *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    /* transition: all .2s linear; */
+}
+*{
     font-family: "Roboto", sans-serif;
 }
+
 header nav{
     padding-top: 1rem !important;
 }
@@ -33,7 +45,7 @@ header .navbar-brand{
     color: var(--primary-text-color);
 }
 .icon-nav{
-    color: var(--primary-text-color);;
+    color: var(--primary-text-color);
     font-size: 2rem;
 }
 .navbar-scrolled{
@@ -127,6 +139,7 @@ main .Carousel .overlay a:hover, main #place-time a{
     border: 1px solid var(--color-primary);
     text-transform: uppercase;
     transition: all 0.5s ease;
+    border-radius: 0%;
 }
 .cta-btn-outline:hover{
     color: white;
@@ -268,22 +281,23 @@ footer{
     /* padding: 24px 0; */
     position: relative;
     padding: 2rem 0;
-    background-image: url('/static/tesorosbeni/images/img3.jpg');
+    /* background-image: url('/static/reporbump/); */
+    background-color: black;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     z-index: 1;
 }
-footer::before {
+/* footer::before {
     content: "";
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background: linear-gradient(to bottom, var(--color-fondo-950), rgba(0, 0, 0, 0.8)); /* Overlay oscuro */
+    background: linear-gradient(to bottom, var(--color-fondo-950), rgba(0, 0, 0, 0.8));
     z-index: -1;
-}
+} */
 footer *{
     color: white;
 
@@ -302,28 +316,8 @@ footer .navbar-brand:hover{
 footer hr{
     border-top: 1px solid var(--color-primary);
 }
-#header-page{
-    position: relative;
-    background-image: url('/static/tesorosbeni/images/img3.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 200px;
-    z-index: 999;
-}
-#header-page::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 50%, var(--color-fondo-950));
-    z-index: -1; /* Asegura que el overlay esté debajo del contenido de #header-page */
-}
-#header-page nav{
-    position: absolute;
-    width: 100%;
+.header-page{
+    background-color: var(--color-fondo-700);
 }
 #form-send {
     position: relative;
@@ -364,6 +358,9 @@ footer hr{
 }
 
 @media (min-width: 576px){
+    p{
+        font-size: 1.25rem;
+    }
     .pre-title-page{
         font-size: 1.5rem;
     }
@@ -422,4 +419,104 @@ footer hr{
         background-color: var(--color-primary);
         border-radius: 50%;
     }
+}
+
+/* maps*/
+#main-map{
+    margin: 0;
+    padding: 0;
+}
+.container_map{
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+}
+.container_map aside{
+    flex: 0 0 50px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-top-left-radius: 25px;
+}
+.menu-aside{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+.menu-aside ul{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0;
+}
+.menu-aside ul li{
+    text-align: center;
+}
+.menu-aside ul li div{
+    cursor: pointer;
+}
+#btn-aside{
+    cursor: pointer;
+}
+.container_map aside .options-aside{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    padding: 0.5rem;
+    height: 100%;
+    width: 100%;
+}
+.container_map aside .options-aside.active{
+    display: block;
+}
+.map-header{
+    position: absolute;
+    top: 1rem;
+    left: 5rem;
+    z-index: 1000;
+    padding: 0.5rem 2rem;
+    border-radius: 20px;
+    background-color: var(--color-fondo-700);
+}
+.map-header p{
+    margin: 0;
+}
+.pop-maker{
+    text-decoration: none;
+}
+.pop-maker span{
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--color-primary);
+}
+/*end maps*/
+@media (min-width: 579px) {
+    .container_map aside .options-aside{
+        width: 300px;
+    }
+}
+.menu_top_aside{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0rem;
+    font-size: 1rem;
+    color: var(--gray);
+}
+.map{
+    flex: 1;
+    position: relative;
+}
+.form-filter{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.form-filter select{
+    padding: 0.5rem;
+    font-size: 16px;
+    border: .1rem solid rgba(0,0,0,.3);
+    border-radius: .5rem;
 }

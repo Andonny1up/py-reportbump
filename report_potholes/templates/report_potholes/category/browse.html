@@ -1,5 +1,5 @@
 {% extends "admin_ssu/master.html" %}
-{% block title %} Solicitudes Baches {% endblock title %}
+{% block title %} Categorias {% endblock title %}
 {% block content %}
 
 <div class="container">
@@ -31,27 +31,6 @@
 
                     </div>   
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="aproveModal" tabindex="-1" aria-labelledby="aproveModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-success" data-bs-theme="dark">
-                <h1 class="modal-title fs-5" id="aproveModalLabel" style="color: white;"> <i class="fa fa-thumbs-up"></i> Aprobar</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">  
-                <p>¿Está seguro de que desea aprobar este registro?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Cancelar</button>
-                <form action="" method="POST" id="aproveForm">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-success">Aprobar</button>
-                </form>
             </div>
         </div>
     </div>
@@ -117,14 +96,6 @@
     });
     
     /* traer la lista->*/
-
-    $(document).ready(function() {
-        $('#aproveModal').on('show.bs.modal', function(e) {
-            var userId = $(e.relatedTarget).data('id');
-            var url = "{% url 'admin_ssu:report_potholes:approve_pothole' 1234567890 %}".replace('1234567890', userId);
-            $('#aproveForm').attr('action', url);
-        });
-    });
     $(document).ready(function() {
         $('#deleteModal').on('show.bs.modal', function(e) {
             var itemId = $(e.relatedTarget).data('id');

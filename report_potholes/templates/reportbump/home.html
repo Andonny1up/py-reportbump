@@ -1,7 +1,7 @@
 
 {% extends "reportbump/layouts/base.html" %}
 {% load static %}
-{% block title %}Tesoros del Beni{% endblock title %}
+{% block title %}El Beni Avanza{% endblock title %}
 {% block content %}
 <!-- Carousel -->
 {% comment %} <section class="Carousel">
@@ -42,11 +42,11 @@
         <div class="row">
             <div class="col d-flex align-items-center order-md-2">
                 <div class="py-5 text-center text-md-start">
-                    <span>Lorem ipsum dolor sit amet.</span>
-                    <h1>Lorem ipsum dolor sit amet.</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam illo eos laudantium veniam harum ducimus!</p>
+                    <span>Transformando el Beni, un paso a la vez</span>
+                    <h1>Obras que Transforman.</h1>
+                    <p>A lo largo de nuestra gestión, hemos llevado a cabo proyectos que no solo embellecen nuestro departamento, sino que también mejoran la calidad de vida de nuestros ciudadanos.</p>
                     <div >
-                        <a href="#" class="btn my-btn-primary">Nosotros</a>
+                        <a href="#about" class="btn my-btn-primary">Nosotros</a>
                         <a href="{% url "maps" %}" class="btn cta-btn-outline" style="border-radius: 0px">IR AL MAPA</a>
                     </div>
                 </div>
@@ -66,15 +66,15 @@
     <div class="container mb-5">
         <div class="limit-text-container" >
             <p class="pre-subtitle-page">Nosotros</p>
-            <h2 class="subtitle">Acerca de Tesoros del Beni</h2>
+            <h2 class="subtitle">Conoce Nuestra Misión</h2>
         </div>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6 p-md-0">
                 <div class="d-flex align-items-center" style="height: 100%">
-                    <p style="font-size: 20px">
-                        El proyecto "Tesoros del Beni" nace con el propósito de explorar, documentar y compartir los fascinantes descubrimientos arqueológicos en la región de Beni, Bolivia. Nuestro objetivo es desvelar los misterios del pasado y preservar el patrimonio cultural para futuras generaciones.
+                    <p class="text-center text-md-start">
+                        Estamos comprometidos con el desarrollo sostenible y el bienestar de nuestra comunidad. Nuestro equipo trabaja incansablemente para implementar proyectos que generen un impacto positivo y duradero. Creemos en la transparencia, la eficiencia y la participación ciudadana como pilares fundamentales para construir un mejor futuro para todos.
                     </p>
                 </div>
             </div>
@@ -90,15 +90,34 @@
         </div>
     </div>
 </section>
-
-<section id="discoveries" class="discoveries section-dark">
+<section id="submit" class="submit-findings py-5" style="background-color: #f1fcf4">
+    <div class="container">
+        <div class="limit-text-container" >
+            <p class="pre-subtitle-page">Mirando al Futuro</p>
+            <h2 class="subtitle">Comprometidos con el mañana</h2>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12 col-md-6 order-md-2 pb-3">
+                <img src="{% static 'reportbump/images/img3.jpeg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="col-12 col-md-6">
+                <p>
+                    Nuestro compromiso con el desarrollo del Beni no se detiene aquí. Descubre las iniciativas y proyectos que tenemos planeados para seguir avanzando y mejorando nuestra comunidad en los próximos años.
+                </p>
+                <a href="{% url "maps" %}" class="btn my-btn-primary">Más Información</a>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<section id="discoveries" class="discoveries py-5 section-gradient" >
     <div class="container">
         <div class="limit-text-container" >
             <p class="pre-subtitle-page">Descubre</p>
-            <h2 class="subtitle">Descubrimientos Recientes</h2>
+            <h2 class="subtitle">Impacto visible en cada rincón</h2>
         </div>
         <div class="row mt-5">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 pb-3">
                 <div class="gallery">
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
@@ -108,13 +127,13 @@
                         </div>
                         <div class="carousel-inner">
                           <div class="carousel-item active">
-                            <img src="{% static 'tesorosbeni/images/img1.jpg' %}" class="d-block w-100" alt="...">
+                            <img src="{% static 'reportbump/images/img5.jpeg' %}" class="d-block w-100" alt="...">
                           </div>
                           <div class="carousel-item">
-                            <img src="{% static 'tesorosbeni/images/img2.jpg' %}" class="d-block w-100" alt="...">
+                            <img src="{% static 'reportbump/images/img4.jpeg' %}" class="d-block w-100" alt="...">
                           </div>
                           <div class="carousel-item">
-                            <img src="{% static 'tesorosbeni/images/img3.jpg' %}" class="d-block w-100" alt="...">
+                            <img src="{% static 'reportbump/images/img2.jpeg' %}" class="d-block w-100" alt="...">
                           </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -130,25 +149,24 @@
             </div>
             <div class="col-12 col-md-6">
                 <div class="discovery-info">
-                    <h3>Descubrimiento Reciente</h3>
                     <p>
-                        Explora nuestra galería de imágenes para ver los artefactos, ruinas y otros objetos arqueológicos enviados por arqueólogos y miembros de la comunidad. Cada imagen viene acompañada de una breve descripción y la ubicación del hallazgo, ofreciendo una visión más profunda de la rica historia y cultura de Beni.
+                        Descubre las obras más significativas realizadas durante nuestra gestión, que han transformado y mejorado la vida en el Beni. Cada proyecto refleja nuestro compromiso con el progreso y el bienestar de todos.
                     </p>
-                    <a href="#" class="btn cta-btn-outline">Más Información</a>
+                    <a href="{% url "maps" %}" class="btn cta-btn-outline" style="border-radius: 0px">IR AL MAPA</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<section id="banner">
+{% comment %} <section id="banner">
     <div class="d-flex justify-content-center align-items-center">
         <div class="my-border-dark">
             <a href="#submit-form" class="btn cta-btn-dark">IR AL MAPA</a>
         </div>
     </div>
-</section>
+</section> {% endcomment %}
 
-<section id="submit" class="submit-findings section-dark">
+{% comment %} <section id="submit" class="submit-findings section-dark">
     <div class="container">
         <div class="limit-text-container" >
             <p class="pre-subtitle-page">Comparte</p>
@@ -169,22 +187,19 @@
             </div>
         </div>
     </div>
-</section>
+</section> {% endcomment %}
 
-<section id="map" class="interactive-map section-dark">
+{% comment %} <section id="map" class="interactive-map section-dark">
     <div class="container">
         <div class="limit-text-container" >
             <p class="pre-subtitle-page">Explorar</p>
             <h2 class="subtitle">Explora el Mapa</h2>
-        </div>
-        <div id="map-container">
-            <!-- Mapa interactivo -->
         </div>
         <div class="d-flex justify-content-center mt-5">
             <a href="#submit-form" class="btn cta-btn-outline">Explorar Ahora</a>
         </div>
     </div>
     
-</section>
+</section> {% endcomment %}
 <!-- Carousel -->
 {% endblock content %}

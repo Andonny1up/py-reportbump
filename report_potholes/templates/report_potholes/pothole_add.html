@@ -1,10 +1,10 @@
 {% extends "reportbump/layouts/base.html" %}
 {% load static %}
-{% block title %}Reporta bache{% endblock title %}
+{% block title %}Reporta {% endblock title %}
 {% block content %}
 <section id="home"class="home">
     <div class="panel">
-        <h1 class="heading main">Reportar <span>Bache</span></h1>
+        <h1 class="heading main">Reportar <span></span></h1>
         <div class="row">
             <form id="my-form" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}

@@ -164,7 +164,7 @@ class PotholeThanksView(TemplateView):
 
 
 class ApprovedPotholeMapView(TemplateView):
-    """Muestra un mapa con los baches aprobados."""
+    """Muestra un mapa"""
     template_name = 'report_potholes/pothole_maps.html'  # reemplaza con el nombre de tu plantilla
 
     def get_context_data(self, **kwargs):
@@ -193,7 +193,7 @@ class ApprovedPotholeMapView(TemplateView):
     
 
 class PotholeDetailView(DetailView):
-    """Muestra los detalles de un bache."""
+    """Muestra los detalles"""
     model = Pothole
     template_name = 'report_potholes/pothole_detail.html'
     context_object_name = 'pothole'
@@ -201,7 +201,7 @@ class PotholeDetailView(DetailView):
 
 # administrador
 class UnapprovedPotholeListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-    """Muestra los baches no aprobados."""
+    """Muestra"""
     model = Pothole
     template_name = 'report_potholes/potholes/pothole_solicitude.html'  # reemplaza con el nombre de tu plantilla
     context_object_name = 'potholes'
@@ -214,7 +214,7 @@ class UnapprovedPotholeListView(LoginRequiredMixin, PermissionRequiredMixin, Lis
 
 @login_required
 def approve_pothole(request, pk):
-    """Aprueba un bache."""
+    """Aprueba"""
     if not request.user.has_perm('app_name.can_approve_pothole'):
         raise PermissionDenied
     pothole = get_object_or_404(Pothole, pk=pk)
@@ -224,14 +224,14 @@ def approve_pothole(request, pk):
     
 
 class PotholeDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
-    """Vista para descartar y eliminar un bache."""
+    """Vista para descartar y eliminar"""
     model = Pothole
     success_url = reverse_lazy('admin_ssu:report_potholes:solicitude_potholes')
     permission_required = 'report_potholes.delete_pothole'
     
 
 class PotholePointDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
-    """Vista para descartar y eliminar un bache."""
+    """Vista para descartar y eliminar"""
     model = Pothole
     success_url = reverse_lazy('admin_ssu:report_potholes:potholes_list')
     permission_required = 'report_potholes.delete_pothole'
@@ -267,7 +267,7 @@ class PotholeDetailMapView(LoginRequiredMixin, PermissionRequiredMixin, DetailVi
 
             distance = R * c
 
-            # Si la distancia es menor a 1 kilómetro, añade el bache a la lista
+            # Si la distancia es menor a 1 kilómetro, añade el  a la lista
             if distance < 1:
                 nearby_potholes.append({'latitude': float(pothole.latitude), 'longitude': float(pothole.longitude),'url': reverse('pothole_detail', args=[pothole.id])})
 
