@@ -73,7 +73,12 @@ document.getElementById('id_longitude').value = e.target.getLatLng().lng.toFixed
     }
 
     map.on('click', updateLatLng);
-    marker.on('dragend', updateLatLng);
+    marker.on('dragend',function(e){
+        var latlng = e.target.getLatLng();
+        document.getElementById('id_latitude').value = latlng.lat.toFixed(7);
+        document.getElementById('id_longitude').value = latlng.lng.toFixed(7);
+        marker.setLatLng(latlng);
+    });
 
     document.getElementById('id_latitude').addEventListener('blur', updateMarkerFromInput);
     document.getElementById('id_longitude').addEventListener('blur', updateMarkerFromInput);
