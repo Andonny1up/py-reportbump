@@ -41,8 +41,8 @@ class ProyectForm(forms.ModelForm):
             'photo': forms.FileInput(attrs={'class': 'form-control-file'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'year_management': forms.Select(attrs={'class': 'form-control','required': 'required'}),
-            'latitude': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly','required': 'required'},),
-            'longitude': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly','required': 'required'}),
+            'latitude': forms.NumberInput(attrs={'class': 'form-control','required': 'required'},),
+            'longitude': forms.NumberInput(attrs={'class': 'form-control','required': 'required'}),
         }
 
     def clean(self):
