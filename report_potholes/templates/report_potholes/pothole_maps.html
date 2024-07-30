@@ -60,7 +60,7 @@
     var potholes = JSON.parse('{{ potholes|escapejs }}');
     if (potholes.length > 0) {
         // vista inicial del mapa // -14.834850122248268, -64.90412867204859
-        var map = L.map('mapid').setView([-14.8348501, -64.9041286], 14);
+        var map = L.map('mapid').setView([-13.746941, -65.388259], 7);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -84,6 +84,7 @@ class PotholeBrowseView(LoginRequiredMixin, PermissionRequiredMixin,TemplateView
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        search = self.request.GET.get('search', '')
         context['title'] = 'Proyectos Registrados'
         return context
     
@@ -96,7 +97,11 @@ class PotholesListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     permission_required = 'report_potholes.view_pothole'
 
     def get_queryset(self):
-        return Pothole.objects.filter(approved=True)
+        queryset = Pothole.objects.filter(approved=True)
+        search = self.request.GET.get('search', '')
+        if search:
+            queryset = queryset.filter(title__icontains=search)
+        return queryset
     
     def get_paginate_by(self, queryset):
         return self.request.GET.get('paginate_by', self.paginate_by)
