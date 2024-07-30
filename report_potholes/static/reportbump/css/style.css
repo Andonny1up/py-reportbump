@@ -490,6 +490,33 @@ footer hr{
     font-weight: bold;
     color: var(--color-primary);
 }
+.btn-back{
+    background-color: white;
+    color: black;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 30px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    top: 5rem;
+    left: 0.7rem;
+    z-index: 1000;
+}
+.btn-back i{
+    font-size: 1.5rem;
+}
+.btn-back span{
+    font-size: 0.5rem;
+    text-align: center;
+}
+.back{
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+}
 /*end maps*/
 @media (min-width: 579px) {
     .container_map aside .options-aside{

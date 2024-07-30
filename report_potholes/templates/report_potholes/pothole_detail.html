@@ -3,12 +3,18 @@
 {% block content %}
 <section id="home" class="home py-5">
     <div class="container">
+        <a href="{% url "maps" %}" class="back">
+            <i class="fa fa-arrow-circle-left"></i>
+            <span>Volver</span>
+        </a>
+    </div>
+    <div class="container">
         <div class="limit-text-container" >
             <p class="pre-subtitle-page">Proyecto</p>
-            <h1 class="subtitle">{{pothole.title}}</h1>
+            <h1 class="subtitle" style="font-size: 2rem; font-weight: 300">{{pothole.title}}</h1>
         </div>
         <div class="d-flex justify-content-center mb-5 ">
-            <img class="img" src="{{ pothole.display_image.url }}" alt="Foto del " width="300px">
+            <img class="img" src="{{ pothole.display_image.url }}" alt="Imagen proyecto" style="min-width: 300; max-width: 600px">
         </div>
         <h2>Gestión: {{pothole.year_management}}</h2>
         {% if pothole.category %}
