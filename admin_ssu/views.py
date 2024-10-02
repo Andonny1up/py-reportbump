@@ -134,7 +134,7 @@ class AdminChangePasswordView(LoginRequiredMixin, PermissionRequiredMixin, View)
         if form.is_valid():
             form.save()
             messages.success(request, 'La contraseña fue actualizada exitosamente!')
-            return redirect('admin_ssu:user_view', pk=user.pk)
+            return redirect('admin_ssu:user_view')
         else:
             messages.error(request, 'Por favor corrige el error abajo.')
         return render(request, 'admin_ssu/users/admin_change_password.html', {'form': form, 'user': user})
